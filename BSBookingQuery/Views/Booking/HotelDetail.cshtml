@@ -1,0 +1,22 @@
+﻿@model BookingModel
+
+<div>
+    <h1>
+        model.Name
+    </h1>
+    <br /><br />
+    <h1>
+        model.Location
+    </h1>
+    <br /><br />
+    <h1>
+        model.Rating
+    </h1>
+
+    <br /><br />
+    @foreach (var obj in Model.Comments)
+    {
+        <p> obj.UserComments </p>
+        <br />
+    }
+</div>

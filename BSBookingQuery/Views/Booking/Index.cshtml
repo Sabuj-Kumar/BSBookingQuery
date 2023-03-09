@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BookingModel>
+
+<dev class="container p-3">
+    <dev class="row pt-4">
+        <dev class="col-6">
+            <h2 class="text-primary">
+                Hotel List
+            </h2>
+        </dev>
+        <dev class="col-6 text-end">
+            <div class="w-60 btn-group" role="group">
+                <form asp-action="GetByName" asp-controller="Booking">
+            <tr>
+                <td>
+                    <input type="submit" value="Update" />
+                </td>
+            </tr>
+            </form>
+
+            </div>
+        </dev>
+        <br /><br /><br /> 
+    </dev>
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Location
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Options
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <a asp-controller="Booking" asp-action="Details" asp-route-id="@obj.Id">
+                    <tr>
+                    <td width="25%">
+                        @obj.Name
+                    </td>
+                    <td width="25%">
+                        @obj.Location
+                    </td>
+                    <td width="25%">
+                        @obj.Rating
+                    </td>
+                   
+                    <td>
+                        <div class="w-60 btn-group" role="group">
+                            <a asp-controller="Booking" asp-action="Edit" asp-route-editId="@obj.Id" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i>Edit</a>
+                            <a asp-controller="Booking" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-primary mx-2"> <i class="bi bi-trash"></i>Delete</a>
+                            <a asp-controller="Booking" asp-action="Details" asp-route-id="@obj.Id" class="btn btn-primary mx-2"> <i class="bi bi-trash"></i>Details</a>
+                        </div>
+                    </td>
+                </tr></a>
+            }
+        </tbody>
+    </table>
+</dev>

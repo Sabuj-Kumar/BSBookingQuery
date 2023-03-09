@@ -1,0 +1,46 @@
+﻿@model BookingModel
+
+<div>
+
+    <h1 style="color:green">
+        Name: @Model.Name
+    </h1>
+   
+    <br />
+   
+    <h1 style="color:blue" >
+       Location: @Model.Location
+    </h1>
+    
+   
+    <br />
+  
+    <h1 style="color:red">
+        Hotel Rating: @Model.Rating
+    </h1>
+ 
+   
+    <br />
+    @if (Model.Comments != null)
+    {
+        @foreach (var obj in Model.Comments)
+        {
+            <p> @obj.UserComments </p>
+            <br />
+        }       
+    }
+    <form method="post" asp-action="Details">
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Name)
+        @Html.HiddenFor(model => model.Rating)
+        @Html.HiddenFor(model => model.Location)
+    <div class="mb-3">
+        <label asp-for="Comments"></label>
+        <input asp-for="Comments" class="form-control" />
+        <span asp-validation-for="Comments" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary" style="width:150px">
+        Update
+    </button>
+    </form>
+</div>

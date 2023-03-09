@@ -1,4 +1,6 @@
 using BSBookingQuery.Data;
+using BSBookingQuery.Interface.Manager;
+using BSBookingQuery.Managers;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDBContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 builder.Services.AddControllers();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+builder.Services.AddTransient<Imanager,BookingManager>();
 
 var app = builder.Build();
 
@@ -24,6 +28,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Booking}/{action=Index}");
 
 app.Run();
